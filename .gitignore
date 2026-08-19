@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+.pytest_cache/
+appium.log
+
+SampleApp/local.properties
+SampleApp/.gradle/
+SampleApp/build/
+SampleApp/app/build/
+SampleApp/.idea/
