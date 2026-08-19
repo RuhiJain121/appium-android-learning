@@ -1,4 +1,5 @@
 from appium.webdriver.common.appiumby import AppiumBy
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -22,5 +23,8 @@ class LoginPage:
         self.wait.until(EC.visibility_of_element_located(self.USERNAME_FIELD))
 
     def error_is_visible(self) -> bool:
-        elements = self.driver.find_elements(*self.ERROR_TEXT)
-        return len(elements) > 0 and elements[0].is_displayed()
+        try:
+            WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.ERROR_TEXT))
+            return True
+        except TimeoutException:
+            return False
